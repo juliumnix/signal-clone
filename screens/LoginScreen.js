@@ -1,11 +1,37 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, KeyboardAvoidingView } from 'react-native';
 import {Button, Input, Image} from 'react-native-elements';
+import { auth } from "../firebase"
+
+const styles = StyleSheet.create({
+  container:{
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 10,
+  },
+  inputContainer:{
+    width: 300,
+  },
+  button:{
+    width: 200,
+    marginTop: 10,
+  },
+})
 
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+        if (authUser) {
+          navigation.replace('Home')
+        }
+    });
+    return unsubscribe;
+  }, [])
 
   const signIn = () => {
 
@@ -50,19 +76,3 @@ const LoginScreen = ({navigation}) => {
 };
 
 export default LoginScreen
-
-const styles = StyleSheet.create({
-  container:{
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 10,
-  },
-  inputContainer:{
-    width: 300,
-  },
-  button:{
-    width: 200,
-    marginTop: 10,
-  },
-})

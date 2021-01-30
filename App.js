@@ -7,20 +7,10 @@ import {CardStyleInterpolators, createStackNavigator} from '@react-navigation/st
 
 import RegisterScreen from './screens/RegisterScreen'
 import LoginScreen from "./screens/LoginScreen"
+import HomeScreen from "./screens/HomeScreen"
 
 const Stack = createStackNavigator();
 
-// const config = {
-//   animation: 'spring',
-//   config: {
-//     stiffness: 1000,
-//     damping: 500,
-//     mass: 3,
-//     overshootClamping: true,
-//     restDisplacementThreshold: 0.01,
-//     restSpeedThreshold: 0.01,
-//   },
-// };
 
 const globalScreenOptions = {
   headerStyle: { backgroundColor: "#2C6BED" },
@@ -29,11 +19,8 @@ const globalScreenOptions = {
   headerTitleAlign: "center",
   gestureEnabled: true,
   gestureDirection: 'horizontal',
-  // transitionSpec: {
-  //   open: config,
-  //   close: config,
-  // },
   cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+  
 }
 
 
@@ -44,6 +31,7 @@ export default function App() {
       <Stack.Navigator screenOptions={globalScreenOptions}>
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
+      <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
