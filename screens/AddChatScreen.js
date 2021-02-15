@@ -37,7 +37,7 @@ const createChat = async () =>{
           <Icon name="wechat" type="antdesign" size={24} color="black" />
         }
       />
-      <Button onPress={createChat} title="Create a new Chat" />
+      <Button disabled={!input} onPress={createChat} title="Create a new Chat" />
     </View>
       
   )
